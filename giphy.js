@@ -33,9 +33,9 @@ $(document).on("click", ".gifButtons", displayGif);
 
 function displayGif() {
     var animal = $(this).attr("gifName");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=QPbdWuyzSoqRRSGMjQ5XoBVCzfwgaI2A&q=" + animal + "&limit=10&offset=0&rating=PG-13&lang=en";
-    var state1 = "still"
-    var state2 = "animated"    
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=QPbdWuyzSoqRRSGMjQ5XoBVCzfwgaI2A&q=" + animal + "&limit=10&offset=0&rating=G&lang=en";
+    //var state1 = "still"
+   // var state2 = "animated"    
     
     $.ajax({
         url: queryURL,
@@ -51,11 +51,11 @@ function displayGif() {
 
             var gifDiv = $("<div class='animal'>");
 
-            var title = response.data[j].title;
-            var t1 = $("<p>").text("Title: " + title);
+            var rating = response.data[j].rating;
+            var t1 = $("<p>").text("Rating: " + rating);
             gifDiv.append(t1);
 
-            var gifURL = response.data[j].images.original.url;
+            var gifURL = response.data[j].images.fixed_height.url;
             var gif = $("<img>").attr("src", gifURL);
             //gif.addClass("change");
             gifDiv.append(gif);
@@ -68,12 +68,11 @@ function displayGif() {
             
         }
         
+        $(this).on("click", function(){
+        alert("HEYY");
+        
+        
+        
+        });
     });
 }
-
-$("").on("click", function(){
-alert("HEYY");
-
-
-
-});
