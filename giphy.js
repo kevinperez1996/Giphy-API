@@ -25,8 +25,6 @@ $("#addbtn").on("click", function(event){
     animals.push(newAnimal);
     makeButtons();
 
-
-
 });
 
 $(document).on("click", ".gifButtons", displayGif);
@@ -42,37 +40,40 @@ function displayGif() {
         method: "GET"
     }).then(function (response) {
         console.log(response);
-
-
-
+        
         for (var j = 0; j < 9; j++) {
             
-
-
             var gifDiv = $("<div class='animal'>");
-
             var rating = response.data[j].rating;
+            
             var t1 = $("<p>").text("Rating: " + rating);
             gifDiv.append(t1);
+            
+            var animated = response.data[j].images.fixed_height.url;
+            var still = response.data[j].images.fixed_height_still.url;
+            
+            var gifURL1 = still;
+            var gifURL2 = animated;
+            var gif = $("<img class='actualGif' state='still'>").attr("src", gifURL1);
+            
+            $(document).on("click", ".actualGif", function(){
 
-            var gifURL = response.data[j].images.fixed_height.url;
-            var gif = $("<img>").attr("src", gifURL);
-            //gif.addClass("change");
+                var state = $(".actualGif").attr("state");
+
+                if (state === "still"){
+                gif.attr("src", gifURL2);
+                $(".actualGif").attr("state", "animated");
+                }
+                else {
+                gif.attr("src", gifURL1);
+                $(".actualGif").attr("state", "still");
+                }
+            });
+
             gifDiv.append(gif);
-
+            
+            
             $("#animalDisplay").prepend(gifDiv);
-
-
-            
-            
-            
         }
-        
-        $(this).on("click", function(){
-        alert("HEYY");
-        
-        
-        
-        });
     });
 }
