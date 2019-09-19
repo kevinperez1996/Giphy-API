@@ -47,9 +47,9 @@ function displayGif() {
             var t1 = $("<p>").text("Rating: " + rating);
             gifDiv.append(t1);
 
-            var gifURL1 = response.data[j].images.fixed_height_still.url;
-            var gifURL2 = response.data[j].images.fixed_height.url;
-            var gif = $("<img class='actualGif' state='still'>").attr("src", gifURL1);
+            var gifStill = response.data[j].images.fixed_height_still.url;
+            var gifAnimated = response.data[j].images.fixed_height.url;
+            var gif = $("<img class='actualGif' state='still'>").attr("src", gifStill);
 
 
             $(document).on("click", ".actualGif", function () {
@@ -57,12 +57,12 @@ function displayGif() {
                 var state = $(this).attr("state");
 
                 if (state === "still") {
-                    $(this).attr("src", gifURL2);
+                    $(this).attr("src", gifAnimated);
                     $(".actualGif").attr("state", "animated");
                 
                 }
                 else if (state === "animated") {
-                    $(this).attr("src", gifURL1);
+                    $(this).attr("src", gifStill);
                     $(".actualGif").attr("state", "still");
                    
                 }
