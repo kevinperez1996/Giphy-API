@@ -2,8 +2,16 @@ button{
     height: 30px; 
     width: 60px;
     margin-bottom: 25px;
-}; 
+}
 
-img {
+.animal{
+    display: inline-block;
     float: left;
+    margin: 10px;
+}
+img {
+    border : 2px solid yellow;
+    
+    
+    
 }
