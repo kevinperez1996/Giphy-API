@@ -6,8 +6,7 @@ button{
 
 .animal{
     display: inline-block;
-    float: left;
-    margin: 10px;
+    margin: 6px;
 }
 img {
     border : 2px solid yellow;

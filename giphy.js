@@ -3,27 +3,27 @@ var animals = ["Dog", "Cat", "Horse", "Monkey", "Elephant"];
 
 function makeButtons() {
     $("#btnDisplay").empty();
-
+    
     for (var i = 0; i < animals.length; i++) {
-
+        
         var btn = $("<button>");
         btn.addClass("gifButtons")
         btn.attr("gifName", animals[i]);
         btn.text(animals[i]);
-
+        
         $("#btnDisplay").append(btn);
-
+        
     };
 }
 makeButtons();
 
 $("#addbtn").on("click", function (event) {
     event.preventDefault();
-
+    
     var newAnimal = $("#animalAdd").val().trim();
     animals.push(newAnimal);
     makeButtons();
-
+    
 });
 
 $(document).on("click", ".gifButtons", displayGif);
@@ -39,7 +39,7 @@ function displayGif() {
     }).then(function (response) {
         console.log(response);
 
-        for (var j = 0; j < 10; j++) {
+        for (var j = 0; j < 9; j++) {
 
             var gifDiv = $("<div class='animal'>");
             var rating = response.data[j].rating;
@@ -54,14 +54,14 @@ function displayGif() {
 
             $(document).on("click", ".actualGif", function () {
 
-                var state = $(".animal").attr("state");
+                var state = $(this).attr("state");
 
                 if (state === "still") {
                     $(this).attr("src", gifURL2);
                     $(".actualGif").attr("state", "animated");
                 
                 }
-                else {
+                else if (state === "animated") {
                     $(this).attr("src", gifURL1);
                     $(".actualGif").attr("state", "still");
                    
