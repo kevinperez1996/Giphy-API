@@ -7,21 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--JQUERY LINK-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--BootstrapCSS Link-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>GIF's & gif's</title>
+    <title>GIFs & more gifs</title>
 </head>
 
 <body>
-    <div id="btnDisplay"></div>
+    <div class="container">
 
-    <form id="animalInput">
-         <label for="animal">Add New Animal: </label>
-        <input type="text" id="animalAdd">
-        <input type="submit" id="addbtn" value="Add">
-    </form>
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-4">GIFs & more gifs</h1>
+                <p class="lead">Click on an animal button, to display some gif images. <br>
+                                You can also click the images to play/pause them!
+                </p>
+            </div>
+        </div>
 
-    <div id= "animalDisplay"></div>
+        <div id="btnDisplay"></div>
 
+
+        <form id="animalInput">
+            <label for="animal">Add New Animal: </label>
+            <input type="text" id="animalAdd">
+            <input type="submit" id="addbtn" value="Add">
+        </form>
+
+
+        <div id="animalDisplay"></div>
+
+    </div>
 
     <script type="text/javascript" src="giphy.js"></script>
 </body>

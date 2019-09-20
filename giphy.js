@@ -1,5 +1,8 @@
 
-var animals = ["Dog", "Cat", "Horse", "Monkey", "Elephant"];
+var animals = ["Dog", "Cat", "Horse", "Monkey", "Elephant", "Lion", "Tiger", 
+              "Wolf", "Bear", "Rabbit", "Hippo", "Dolphin", "Shark", 
+               "Deer", "Cow", "Eagle", "Sheep", "Chicken"];
+              
 
 function makeButtons() {
     $("#btnDisplay").empty();
@@ -39,7 +42,7 @@ function displayGif() {
     }).then(function (response) {
         console.log(response);
 
-        for (var j = 0; j < 9; j++) {
+        for (var j = 0; j < 10; j++) {
 
             var gifDiv = $("<div class='animal'>");
             var rating = response.data[j].rating;
