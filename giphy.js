@@ -3,27 +3,27 @@ var animals = ["Dog", "Cat", "Horse", "Monkey", "Elephant"];
 
 function makeButtons() {
     $("#btnDisplay").empty();
-    
+
     for (var i = 0; i < animals.length; i++) {
-        
+
         var btn = $("<button>");
         btn.addClass("gifButtons")
         btn.attr("gifName", animals[i]);
         btn.text(animals[i]);
-        
+
         $("#btnDisplay").append(btn);
-        
+
     };
 }
 makeButtons();
 
 $("#addbtn").on("click", function (event) {
     event.preventDefault();
-    
+
     var newAnimal = $("#animalAdd").val().trim();
     animals.push(newAnimal);
     makeButtons();
-    
+
 });
 
 $(document).on("click", ".gifButtons", displayGif);
@@ -49,28 +49,32 @@ function displayGif() {
 
             var gifStill = response.data[j].images.fixed_height_still.url;
             var gifAnimated = response.data[j].images.fixed_height.url;
+
             var gif = $("<img class='actualGif' state='still'>").attr("src", gifStill);
+            gif.attr("data-still", gifStill);
+            gif.attr("data-animate", gifAnimated);
 
-
-            $(document).on("click", ".actualGif", function () {
-
-                var state = $(this).attr("state");
-
-                if (state === "still") {
-                    $(this).attr("src", gifAnimated);
-                    $(".actualGif").attr("state", "animated");
-                
-                }
-                else if (state === "animated") {
-                    $(this).attr("src", gifStill);
-                    $(".actualGif").attr("state", "still");
-                   
-                }
-                
-            });
 
             gifDiv.append(gif);
             $("#animalDisplay").prepend(gifDiv);
-        }
+        };
+
+        $(document).on("click", ".actualGif", function () {
+
+            var state = $(this).attr("state");
+
+            if (state === "still") {
+                $(this).attr("src", $(this).attr("data-animate"));
+                $(".actualGif").attr("state", "animated");
+
+            }
+            else if (state === "animated") {
+                $(this).attr("src", $(this).attr("data-still"));
+                $(".actualGif").attr("state", "still");
+
+            };
+
+        });
+
     });
 }
